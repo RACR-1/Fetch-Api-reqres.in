@@ -7,20 +7,20 @@ position: relative;
 #id{
  font-size: 20px;
  position: relative; 
- left: -40px;  
+ left: -27px;  
 }
 #nome{
     font-size: 20px;
     position: relative;
     left: 65px;
-    top:40px;
+    top:27px;
     
 }
 #email{
     font-size: 17px;
     position: relative;
     top: 48px;
-    left: 30px;
+    left: 20px;
 }
 #imgPessoa{
     position: relative;
@@ -42,3 +42,12 @@ position: relative;
     width: 500%;
    
 }
+
+.contact-form{
+    font-size:20px;
+    position: relative;
+    top:170px;
+    left:500px;
+    border: 2px;
+}
+

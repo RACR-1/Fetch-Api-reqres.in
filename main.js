@@ -28,7 +28,7 @@ async function seeAllPages() {
 seeAllPages();
 function returnBoxes(dados) {
   let template = `
-      <label id="nome">${dados.nome}</label>
+      <label id="nome">${dados.first_name}</label>
       <label id="id">${dados.id}</label>
       <label id="email">${dados.email}</label>
       <img src="${dados.avatar}" id="imgPessoa">
@@ -38,3 +38,12 @@ function returnBoxes(dados) {
   divBox.innerHTML = template;
   document.querySelector(".container").appendChild(divBox);
 }
+
+const redirect = (num) => {
+  if (num == 0) {
+    window.location.href = "https://github.com/RACR-1";
+  } else if (num == 1) {
+    window.location.href =
+      "https://www.linkedin.com/in/rodrigo-acr-197965218/?_l=pt_BR";
+  }
+};
