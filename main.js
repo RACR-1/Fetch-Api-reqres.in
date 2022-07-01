@@ -1,9 +1,10 @@
+let promiseR;
 async function seeAllPages() {
   let number = 0;
   let numberUp = 1;
   const insertboxes = (data) => {
     for (let i = 0; i < data.data.length; i++) {
-      returnBoxes(data.data[i]);
+      returnBoxes(data.data[i], data.data[i].avatar);
     }
   };
   let breaklop = true;
@@ -26,17 +27,45 @@ async function seeAllPages() {
   }
 }
 seeAllPages();
-function returnBoxes(dados) {
-  let template = `
+async function returnBoxes(dados, imgUrl = "") {
+  //promise here
+  let blobUrl;
+  console.log("dentro return box");
+  new Promise((resolve, reject) => {
+    //
+
+    if (imgUrl) {
+      fetch(imgUrl)
+        .then((response) => response.blob())
+        .then((data) => {
+          const imgUrl = URL.createObjectURL(data);
+          resolve(imgUrl);
+        });
+    } else {
+      reject();
+    }
+  })
+    .then((res) => {
+      console.log(res, "sei la");
+      initImgBox(res);
+    })
+    .catch((rej) => {
+      console.log(rej, "Reject");
+      initImgBox();
+    });
+
+  function initImgBox(value) {
+    let template = `
       <label id="nome">${dados.first_name}</label>
       <label id="id">${dados.id}</label>
       <label id="email">${dados.email}</label>
-      <img src="${dados.avatar}" id="imgPessoa">
+      <img src="${imgUrl ? value : dados.avatar}" id="imgPessoa">
 `;
-  const divBox = document.createElement("div");
-  divBox.classList.add("box");
-  divBox.innerHTML = template;
-  document.querySelector(".container").appendChild(divBox);
+    const divBox = document.createElement("div");
+    divBox.classList.add("box");
+    divBox.innerHTML = template;
+    document.querySelector(".container").appendChild(divBox);
+  }
 }
 
 const redirect = (num) => {
